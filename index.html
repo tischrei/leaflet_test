@@ -22,7 +22,10 @@
 </head>
 
 <body>
-  <div id="map"></div>
+  <div id="container">
+    <div id="map"></div>
+    <div id="mouse_position" class="position-absolute">outside</div>
+  </div>
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -39,11 +42,21 @@
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
+
+    function setMouseCoords(lat, lng) {
+      let div = document.getElementById('mouse_position');
+      div.innerHTML = (lat + ', ' + lng);
+    }
+
     map.on('mousemove', function (e) {
       var coord = e.latlng;
       var lat = coord.lat;
       var lng = coord.lng;
-      console.log("You clicked the map at latitude: " + lat + " and longitude: " + lng);
+      setMouseCoords(lat, lng);
+    });
+    map.on('mouseout', function () {
+      let div = document.getElementById('mouse_position');
+      div.innerHTML = 'outside';
     });
   </script>
 
