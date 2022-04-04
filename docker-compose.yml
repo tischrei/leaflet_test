@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  db:
+    image: mariadb:latest
+    restart: always
+    volumes:
+      - ./db-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: Start.123
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8182:80
