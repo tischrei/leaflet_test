@@ -1,3 +1,6 @@
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/leaflet/dist/leaflet.css';
+
 #map {
     height: 90vh;
     z-index: 1;
@@ -6,7 +9,7 @@
 #mouse_position {
     top: 1em;
     right: 3em;
-    color: #fff;
+    color: white;
     background-color: rgba(0,60,136,.5);
     padding: 2px 10px;
     border-radius: 5px;
