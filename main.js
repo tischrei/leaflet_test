@@ -70,22 +70,25 @@ var options = {
 
   var html_data = JSON.parse(document.getElementById('data').innerHTML);
   html_data = L.geoJSON(html_data);
-  console.log(html_data);
+  // console.log(html_data);
   html_data.addTo(map);
   
 
   map.on(L.Draw.Event.CREATED, function (e) {
-    var type = e.layerType,
-      layer = e.layer;
-
-    if (type === 'marker') {
-      layer.bindPopup('A popup!');
-    }
-
-   
+    var type = e.layerType;
+    var layer = e.layer;
+    
     editableLayers.addLayer(layer);
     var data = editableLayers.toGeoJSON();
-    console.log(data);
+    console.log("Layer");
+    console.log(layer);
+    geo_layer = layer.toGeoJSON();
+    geo_layer.properties['color'] = 'red';
+    if ((geo_layer.geometry.type === 'Point') && (layer.options.radius) ){
+      geo_layer.properties['radius'] = layer.options.radius;
+    }
+    console.log("GeoJSON");
+    console.log(geo_layer);
   });
 
 
